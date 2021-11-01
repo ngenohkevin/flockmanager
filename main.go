@@ -18,6 +18,8 @@ func main() {
 	application := &app.App{}
 	application.Initialize(config)
 
+	fmt.Println("Starting server....")
+
 	err := godotenv.Load()
 	if err != nil {
 		return 
@@ -30,8 +32,9 @@ func main() {
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
-	log.Fatal(srv.ListenAndServe())
 
+	fmt.Println("....server started")
+	log.Fatal(srv.ListenAndServe())
 
 
 }
