@@ -15,7 +15,7 @@ import (
 )
 
 func (a *App) Initialize(config *database.Config) {
-	dbURI := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable ",
+	dbURI := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=require ",
 		config.DB.Host,
 		config.DB.Port,
 		config.DB.Username,
