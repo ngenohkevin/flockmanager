@@ -2,7 +2,7 @@ package models
 
 import "github.com/jinzhu/gorm"
 
-
+// Kuroiler structs
 type Kuroiler struct {
 	gorm.Model
 
