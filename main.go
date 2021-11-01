@@ -5,6 +5,7 @@ import (
 	"github.com/ngenohkevin/flock_manager/database"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -19,7 +20,7 @@ func main() {
 
 
 	srv := &http.Server{
-		Addr:         "localhost:9000",
+		Addr:         os.Getenv("PORT"),
 		Handler:      application.SetRouters(),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
