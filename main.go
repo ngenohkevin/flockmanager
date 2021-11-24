@@ -31,10 +31,12 @@ func main() {
 		Handler:      application.SetRouters(),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
+
 	}
 
 	fmt.Println("....server started")
 	log.Fatal(srv.ListenAndServe())
+
 
 
 }

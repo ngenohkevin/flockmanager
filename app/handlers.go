@@ -38,9 +38,9 @@ func (a *App) Initialize(config *database.Config) {
 func (a *App) GetAllKuroilers(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var kuroilers []models.Kuroiler
 	db.Find(&kuroilers)
-	err := a.writeJSON(w, http.StatusOK, kuroilers)
+	err := a.WriteJSON(w, http.StatusOK, kuroilers)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App) CreateKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -48,7 +48,7 @@ func (a *App) CreateKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request
 
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&kuroiler); err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
@@ -57,12 +57,12 @@ func (a *App) CreateKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request
 		}
 	}(r.Body)
 	if err := db.Save(&kuroiler).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusCreated, kuroiler)
+	err := a.WriteJSON(w, http.StatusCreated, kuroiler)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)GetKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -72,9 +72,9 @@ func (a *App)GetKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if kuroiler == nil{
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK,kuroiler)
+	err := a.WriteJSON(w, http.StatusOK,kuroiler)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)UpdateKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -86,7 +86,7 @@ func (a *App)UpdateKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 	}
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&kuroiler); err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
 	defer func(Body io.ReadCloser) {
@@ -97,12 +97,12 @@ func (a *App)UpdateKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 	}(r.Body)
 
 	if err := db.Save(&kuroiler).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK, kuroiler)
+	err := a.WriteJSON(w, http.StatusOK, kuroiler)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)DeleteKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -113,12 +113,12 @@ func (a *App)DeleteKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 		return
 	}
 	if err := db.Delete(&kuroiler).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusNoContent, nil)
+	err := a.WriteJSON(w, http.StatusNoContent, nil)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 
@@ -127,9 +127,9 @@ func (a *App)DeleteKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 func (a *App)GetAllRainbowRoosters(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var rainbowrooster []models.RainbowRooster
 	db.Find(&rainbowrooster)
-	err := a.writeJSON(w, http.StatusOK, rainbowrooster)
+	err := a.WriteJSON(w, http.StatusOK, rainbowrooster)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)CreateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -137,7 +137,7 @@ func (a *App)CreateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Re
 
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&rainbowrooster); err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
@@ -146,12 +146,12 @@ func (a *App)CreateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Re
 		}
 	}(r.Body)
 	if err := db.Save(&rainbowrooster).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusCreated, rainbowrooster)
+	err := a.WriteJSON(w, http.StatusCreated, rainbowrooster)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)GetRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -161,9 +161,9 @@ func (a *App)GetRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Reque
 	if rainbowrooster == nil{
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK,rainbowrooster)
+	err := a.WriteJSON(w, http.StatusOK,rainbowrooster)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)UpdateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -175,7 +175,7 @@ func (a *App)UpdateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Re
 	}
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&rainbowrooster); err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
 	defer func(Body io.ReadCloser) {
@@ -186,12 +186,12 @@ func (a *App)UpdateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Re
 	}(r.Body)
 
 	if err := db.Save(&rainbowrooster).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK, rainbowrooster)
+	err := a.WriteJSON(w, http.StatusOK, rainbowrooster)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)DeleteRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -202,12 +202,12 @@ func (a *App)DeleteRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Re
 		return
 	}
 	if err := db.Delete(&rainbowrooster).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusNoContent, nil)
+	err := a.WriteJSON(w, http.StatusNoContent, nil)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 // handlers for Broilers
@@ -215,9 +215,9 @@ func (a *App)DeleteRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Re
 func (a *App)GetAllBroilers(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var broilers []models.Broilers
 	db.Find(&broilers)
-	err := a.writeJSON(w, http.StatusOK, broilers)
+	err := a.WriteJSON(w, http.StatusOK, broilers)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)CreateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -225,7 +225,7 @@ func (a *App)CreateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) 
 
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&broiler); err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
@@ -234,12 +234,12 @@ func (a *App)CreateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) 
 		}
 	}(r.Body)
 	if err := db.Save(&broiler).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusCreated, broiler)
+	err := a.WriteJSON(w, http.StatusCreated, broiler)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)GetBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -249,9 +249,9 @@ func (a *App)GetBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if broiler == nil{
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK,broiler)
+	err := a.WriteJSON(w, http.StatusOK,broiler)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)UpdateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -263,7 +263,7 @@ func (a *App)UpdateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) 
 	}
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&broiler); err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
 	defer func(Body io.ReadCloser) {
@@ -274,12 +274,12 @@ func (a *App)UpdateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) 
 	}(r.Body)
 
 	if err := db.Save(&broiler).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK, broiler)
+	err := a.WriteJSON(w, http.StatusOK, broiler)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)DeleteBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -290,12 +290,12 @@ func (a *App)DeleteBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	if err := db.Delete(&broiler).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusNoContent, nil)
+	err := a.WriteJSON(w, http.StatusNoContent, nil)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 
@@ -304,9 +304,9 @@ func (a *App)DeleteBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) 
 func (a *App)GetAllLayers(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var layers []models.Layers
 	db.Find(&layers)
-	err := a.writeJSON(w, http.StatusOK, layers)
+	err := a.WriteJSON(w, http.StatusOK, layers)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)CreateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -314,7 +314,7 @@ func (a *App)CreateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&layer); err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
@@ -323,12 +323,12 @@ func (a *App)CreateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		}
 	}(r.Body)
 	if err := db.Save(&layer).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusCreated, layer)
+	err := a.WriteJSON(w, http.StatusCreated, layer)
 	if err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)GetLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -338,9 +338,9 @@ func (a *App)GetLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if layer == nil{
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK,layer)
+	err := a.WriteJSON(w, http.StatusOK,layer)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)UpdateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -352,7 +352,7 @@ func (a *App)UpdateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	}
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&layer); err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
 	defer func(Body io.ReadCloser) {
@@ -363,12 +363,12 @@ func (a *App)UpdateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	}(r.Body)
 
 	if err := db.Save(&layer).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusOK, layer)
+	err := a.WriteJSON(w, http.StatusOK, layer)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 func (a *App)DeleteLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -379,12 +379,12 @@ func (a *App)DeleteLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err := db.Delete(&layer).Error; err != nil{
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.writeJSON(w, http.StatusNoContent, nil)
+	err := a.WriteJSON(w, http.StatusNoContent, nil)
 	if err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 	}
 }
 
@@ -392,7 +392,7 @@ func (a *App)DeleteLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 func (a *App)getKuroilerOr404(db *gorm.DB, title string, w http.ResponseWriter, r *http.Request) *models.Kuroiler {
 	kuroilers := models.Kuroiler{}
 	if err := db.First(&kuroilers, models.Kuroiler{Title: title}).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return nil
 	}
 	return &kuroilers
@@ -402,7 +402,7 @@ func (a *App)getKuroilerOr404(db *gorm.DB, title string, w http.ResponseWriter, 
 func (a *App)getRainbowRoosterOr404(db *gorm.DB, title string, w http.ResponseWriter, r *http.Request) *models.RainbowRooster {
 	roosters := models.RainbowRooster{}
 	if err := db.First(&roosters, models.RainbowRooster{Title: title}).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return nil
 	}
 	return &roosters
@@ -412,7 +412,7 @@ func (a *App)getRainbowRoosterOr404(db *gorm.DB, title string, w http.ResponseWr
 func (a *App)getBroilerOr404(db *gorm.DB, title string, w http.ResponseWriter, r *http.Request) *models.Broilers {
 	broilers := models.Broilers{}
 	if err := db.First(&broilers, models.Broilers{Title: title}).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return nil
 	}
 	return &broilers
@@ -422,8 +422,19 @@ func (a *App)getBroilerOr404(db *gorm.DB, title string, w http.ResponseWriter, r
 func (a *App)getLayerOr404(db *gorm.DB, title string, w http.ResponseWriter, r *http.Request) *models.Layers{
 	layers := models.Layers{}
 	if err := db.First(&layers, models.Layers{Title: title}).Error; err != nil {
-		a.errorJSON(w, err)
+		a.ErrorJSON(w, err)
 		return nil
 	}
 	return &layers
+}
+
+//get Users or 404
+func (a *App)getUser(db *gorm.DB, email string, w http.ResponseWriter, r *http.Request) *models.User{
+	users := models.User{}
+	if err := db.First(&users, models.User{Email: email}).Error; err != nil {
+		//err = json.NewEncoder(w).Encode(err)
+		//a.ErrorJSON(w, err)
+		return nil
+	}
+	return &users
 }

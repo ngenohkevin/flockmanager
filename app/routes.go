@@ -14,7 +14,11 @@ type App struct {
 }
 
 
+
 func (a *App) SetRouters() http.Handler{
+	//routing for users
+	a.Post("/v1/kukuchic/register",a.handleRequest(a.Register))
+	a.Post("/v1/kukuchic/login",a.handleRequest(a.Login))
 
 	// Routing for handling the Kuroilers
 	a.Get("/v1/kukuchic/kuroiler",a.handleRequest(a.GetAllKuroilers))
@@ -46,7 +50,8 @@ func (a *App) SetRouters() http.Handler{
 
 
 
-	return a.Router
+	//return a.Router
+	return a.enableCORS(a.Router)
 }
 // Get wraps the router for GET method
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {

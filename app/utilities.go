@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func (a *App)writeJSON(w http.ResponseWriter, status int, data interface{}) error{
+func (a *App) WriteJSON(w http.ResponseWriter, status int, data interface{}) error{
 
 	js, err := json.Marshal(data)
 	if err != nil {
@@ -18,7 +18,7 @@ func (a *App)writeJSON(w http.ResponseWriter, status int, data interface{}) erro
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	_, err = w.Write([]byte(js))
+	_, err = w.Write(js)
 	if err != nil {
 		return nil
 	}
@@ -26,15 +26,14 @@ func (a *App)writeJSON(w http.ResponseWriter, status int, data interface{}) erro
 	return nil
 }
 
-func (a *App) errorJSON (w http.ResponseWriter, err error) {
+func (a *App) ErrorJSON(w http.ResponseWriter, err error) {
 	type jsonError struct {
 		Message string `json:"message"`
 	}
 	theError := jsonError{
 		Message: err.Error(),
 	}
-	_ = a.writeJSON(w, http.StatusBadRequest, theError)
+	_ = a.WriteJSON(w, http.StatusBadRequest, theError)
 	if err != nil {
-		return
 	}
 }
