@@ -1,19 +1,20 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import (
+	"github.com/jinzhu/gorm"
+)
 
 type User struct {
-	ID          uint
-	Name 		string
-	Email       string `gorm:"unique"`
-	Password 	[]byte
+	ID       uint
+	Name     string
+	Email    string `gorm:"unique"`
+	Password []byte
 }
 
 // Kuroiler structs
 
 type Kuroiler struct {
 	gorm.Model
-
 
 	Title      string     `gorm:"unique" json:"title"`
 	Production Production `gorm:"embedded"`
@@ -67,8 +68,17 @@ type Hatchery struct {
 	DeadChicks  int `json:"dead_chicks"`
 	AliveChicks int `json:"alive_chicks"`
 }
+type Flock struct {
+	Id        int    `gorm:"unique" json:"id"`
+	FlockName string `json:"flock_name"`
+	Operations	  Operations `gorm:"embedded" json:"operations"`
+}
+type Operations struct {
+	OpPro	string	`json:"op_pro"`
+	OpHat	string	`json:"op_hat"`
+}
 
 func DBMigrate(db *gorm.DB) *gorm.DB {
-	db.AutoMigrate(&User{},&Kuroiler{}, &RainbowRooster{}, &Broilers{}, &Layers{})
+	db.AutoMigrate(&User{}, &Kuroiler{}, &RainbowRooster{}, &Broilers{}, &Layers{}, &Flock{})
 	return db
 }
