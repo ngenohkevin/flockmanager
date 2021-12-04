@@ -41,11 +41,11 @@ func (a *App) SetRouters() http.Handler {
 	a.Delete("/v1/kukuchic/broiler/{title}", a.handleRequest(a.DeleteBroiler))
 
 	// Routing for handling the Layers
-	a.Get("/v1/kukuchic/layer", a.handleRequest(a.GetAllLayers))
-	a.Post("/v1/kukuchic/layer", a.handleRequest(a.CreateLayer))
-	a.Get("/v1/kukuchic/layer/{title}", a.handleRequest(a.GetLayer))
-	a.Put("/v1/kukuchic/layer/{title}", a.handleRequest(a.UpdateLayer))
-	a.Delete("/v1/kukuchic/layer/{title}", a.handleRequest(a.DeleteLayer))
+	a.Get("/v1/kukuchic/layers", a.handleRequest(a.GetAllLayers))
+	a.Post("/v1/kukuchic/layers", a.handleRequest(a.CreateLayer))
+	a.Get("/v1/kukuchic/layers/{title}", a.handleRequest(a.GetLayer))
+	a.Put("/v1/kukuchic/layers/{title}", a.handleRequest(a.UpdateLayer))
+	a.Delete("/v1/kukuchic/layers/{title}", a.handleRequest(a.DeleteLayer))
 
 	// Routing for handling Flocks
 	a.Get("/v1/kukuchic/flock", a.handleRequest(a.GetAllFlocks))
