@@ -128,7 +128,7 @@ func (a *App) DeleteKuroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request
 func (a *App) GetAllRainbowRoosters(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var rainbowrooster []models.RainbowRooster
 	db.Find(&rainbowrooster)
-	err := a.WriteJSON(w, http.StatusOK, rainbowrooster)
+	err := a.writeJSON(w, http.StatusOK, rainbowrooster,"rainbowrooster")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -150,7 +150,7 @@ func (a *App) CreateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.R
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusCreated, rainbowrooster)
+	err := a.writeJSON(w, http.StatusCreated, rainbowrooster,"rainbowrooster")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -162,7 +162,7 @@ func (a *App) GetRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.Requ
 	if rainbowrooster == nil {
 		return
 	}
-	err := a.WriteJSON(w, http.StatusOK, rainbowrooster)
+	err := a.writeJSON(w, http.StatusOK, rainbowrooster,"rainbowrooster")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -190,7 +190,7 @@ func (a *App) UpdateRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.R
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusOK, rainbowrooster)
+	err := a.writeJSON(w, http.StatusOK, rainbowrooster,"rainbowrooster")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -206,7 +206,7 @@ func (a *App) DeleteRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.R
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusNoContent, nil)
+	err := a.writeJSON(w, http.StatusNoContent, nil,"rainbowrooster")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -217,7 +217,7 @@ func (a *App) DeleteRainbowRooster(db *gorm.DB, w http.ResponseWriter, r *http.R
 func (a *App) GetAllBroilers(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var broilers []models.Broilers
 	db.Find(&broilers)
-	err := a.WriteJSON(w, http.StatusOK, broilers)
+	err := a.writeJSON(w, http.StatusOK, broilers, "broilers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -239,7 +239,7 @@ func (a *App) CreateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusCreated, broiler)
+	err := a.writeJSON(w, http.StatusCreated, broiler,"broilers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -251,7 +251,7 @@ func (a *App) GetBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if broiler == nil {
 		return
 	}
-	err := a.WriteJSON(w, http.StatusOK, broiler)
+	err := a.writeJSON(w, http.StatusOK, broiler,"broilers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -279,7 +279,7 @@ func (a *App) UpdateBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusOK, broiler)
+	err := a.writeJSON(w, http.StatusOK, broiler,"broilers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -295,7 +295,7 @@ func (a *App) DeleteBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusNoContent, nil)
+	err := a.writeJSON(w, http.StatusNoContent, nil,"broilers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -306,7 +306,7 @@ func (a *App) DeleteBroiler(db *gorm.DB, w http.ResponseWriter, r *http.Request)
 func (a *App) GetAllLayers(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	var layers []models.Layers
 	db.Find(&layers)
-	err := a.WriteJSON(w, http.StatusOK, layers)
+	err := a.writeJSON(w, http.StatusOK, layers, "layers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -328,7 +328,7 @@ func (a *App) CreateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusCreated, layer)
+	err := a.writeJSON(w, http.StatusCreated, layer,"layers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -340,7 +340,7 @@ func (a *App) GetLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if layer == nil {
 		return
 	}
-	err := a.WriteJSON(w, http.StatusOK, layer)
+	err := a.writeJSON(w, http.StatusOK, layer, "layers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -368,7 +368,7 @@ func (a *App) UpdateLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusOK, layer)
+	err := a.writeJSON(w, http.StatusOK, layer,"layers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
@@ -384,7 +384,7 @@ func (a *App) DeleteLayer(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		a.ErrorJSON(w, err)
 		return
 	}
-	err := a.WriteJSON(w, http.StatusNoContent, nil)
+	err := a.writeJSON(w, http.StatusNoContent, nil,"layers")
 	if err != nil {
 		a.ErrorJSON(w, err)
 	}
