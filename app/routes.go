@@ -58,22 +58,22 @@ func (a *App) SetRouters() http.Handler {
 
 // Get wraps the router for GET method
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	a.Router.HandleFunc(path, f).Methods("GET")
+	a.Router.HandleFunc(path, f).Methods("GET","OPTIONS")
 }
 
 // Post wraps the router for POST method
 func (a *App) Post(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	a.Router.HandleFunc(path, f).Methods("POST")
+	a.Router.HandleFunc(path, f).Methods("POST","OPTIONS")
 }
 
 // Put wraps the router for PUT method
 func (a *App) Put(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	a.Router.HandleFunc(path, f).Methods("PUT")
+	a.Router.HandleFunc(path, f).Methods("PUT","OPTIONS")
 }
 
 // Delete wraps the router for DELETE method
 func (a *App) Delete(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	a.Router.HandleFunc(path, f).Methods("DELETE")
+	a.Router.HandleFunc(path, f).Methods("DELETE","OPTIONS")
 }
 
 type RequestHandlerFunction func(db *gorm.DB, w http.ResponseWriter, r *http.Request)

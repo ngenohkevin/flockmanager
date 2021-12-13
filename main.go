@@ -22,21 +22,21 @@ func main() {
 
 	err := godotenv.Load()
 	if err != nil {
-		return 
+		return
 	}
 	port := os.Getenv("PORT")
 
+	//ch := goHandlers.CORS(goHandlers.AllowedOrigins([]string{"*"}))
+	//ch := goHandlers.CORS(goHandlers.AllowedMethods([]string{"GET, POST, HEAD, PUT, OPTIONS, DELETE"}))
+
 	srv := &http.Server{
-		Addr:         fmt.Sprintf("%s:%s","0.0.0.0",port),
-		Handler:      application.SetRouters(),
+		Addr:         fmt.Sprintf("%s:%s", "0.0.0.0", port),
+		Handler:     application.SetRouters(),
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
-
 	}
 
 	fmt.Println("....server started")
 	log.Fatal(srv.ListenAndServe())
-
-
 
 }
