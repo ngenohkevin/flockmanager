@@ -4,12 +4,12 @@ flockmanager is a simple Rest Api that allows consumers to manage
 flocks through different stages of production in a farm.
 From the number of eggs produced to the number of chicks hatched.
 
-## [https://flockmanager.herokuapp.com/v1/kukuchic/]
+### https://flockmanager.herokuapp.com/v1/kukuchic/
 
-## kuroiler endpoint [/kuroiler]
-## rainbowrooster endpoint [/rainbowrooster]
-## broiler endpoint [/broiler]
-## layers endpoint [/layers]
+#### kuroiler endpoint [/kuroiler]
+#### rainbowrooster endpoint [/rainbowrooster]
+#### broiler endpoint [/broiler]
+#### layers endpoint [/layers]
 
 ### List All flocks [GET]
 
