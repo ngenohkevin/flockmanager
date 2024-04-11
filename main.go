@@ -29,7 +29,7 @@ func main() {
 	//ch := goHandlers.CORS(goHandlers.AllowedOrigins([]string{"*"}))
 	//ch := goHandlers.CORS(goHandlers.AllowedMethods([]string{"GET, POST, HEAD, PUT, OPTIONS, DELETE"}))
 
-	//run server
+	//run server gh
 	srv := &http.Server{
 		Addr:         fmt.Sprintf("%s:%s", "0.0.0.0", port),
 		Handler:     application.SetRouters(),
